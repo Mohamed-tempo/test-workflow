@@ -11,3 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hi Mom"
+
+  trigger_deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Deployment
+        id: create_deployment
+        uses: octokit/request-action@v2.1.9
+        with:
+          route: POST /repos/:repository/deployments
+          repository: ${{ github.repository }}
+          description: "Deploy triggered by GitHub Actions"
+          environment: dev
+          task: deploy
+        env:
+          # uses different DEPLOY_GITHUB_TOKEN to avoid limitations with
+          # triggering workflows
+          # see https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
