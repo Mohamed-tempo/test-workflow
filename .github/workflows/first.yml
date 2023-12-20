@@ -27,5 +27,6 @@ jobs:
           environment: dev
           ref: ${{ github.sha }}
           task: deploy
+          required_contexts: "['test']"
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
