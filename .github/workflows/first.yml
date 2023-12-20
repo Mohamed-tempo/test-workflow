@@ -25,8 +25,3 @@ jobs:
           description: "Deploy triggered by GitHub Actions"
           environment: dev
           task: deploy
-        env:
-          # uses different DEPLOY_GITHUB_TOKEN to avoid limitations with
-          # triggering workflows
-          # see https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
