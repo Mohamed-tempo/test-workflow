@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hi Mom"
+      - run: echo ${{secrets.DEPLOY_TOKEN}}
 
   trigger_deploy:
     needs: [test]
