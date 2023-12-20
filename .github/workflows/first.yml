@@ -25,3 +25,5 @@ jobs:
           description: "Deploy triggered by GitHub Actions"
           environment: dev
           task: deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
