@@ -25,6 +25,15 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
 
+    - name: Run Shell Script
+      run: |
+        echo "Hello from GitHub Actions!"
+        get_from_event() {
+          jq -r "$1" "${GITHUB_EVENT_PATH}"
+        }
+        echo "what next;_"
+        echo "payload=$(get_from_event '.deployment.payload')" >> $GITHUB_OUTPUT
+
     - name: set output
       run: echo "name=payload::$(get_from_event '.deployment.payload')" >> $GITHUB_OUTPUT
     
