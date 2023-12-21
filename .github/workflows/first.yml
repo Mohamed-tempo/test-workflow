@@ -27,6 +27,8 @@ jobs:
           repository: ${{ github.repository }}
           description: "Deploy triggered by GitHub Actions"
           environment: dev
+          payload: |
+            aws_account: rl-internal
           ref: ${{ github.sha }}
           task: deploy
           required_contexts: "['test']"
