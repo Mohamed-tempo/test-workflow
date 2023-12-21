@@ -24,6 +24,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+
+    - name: set output
+      run: echo "name=payload::$(get_from_event '.deployment.payload')" >> $GITHUB_OUTPUT
     
     - name: Set deployment to in_progress
       uses: rsotnychenko/deployment-status-update@0.2.1
