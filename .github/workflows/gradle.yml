@@ -34,8 +34,14 @@ jobs:
         echo "what next;_"
         echo name=payload::$(get_from_event '.deployment.payload') >> $GITHUB_OUTPUT
 
-    - name: set output
-      run: echo "name=payload::$(get_from_event '.deployment.payload')" >> $GITHUB_OUTPUT
+    - name: check varible 1
+      run: echo "$payload"
+
+    - name: check varible 2
+      run: echo $payload
+
+    - name: check varible 3
+      run: echo ${{payload}}
     
     - name: Set deployment to in_progress
       uses: rsotnychenko/deployment-status-update@0.2.1
