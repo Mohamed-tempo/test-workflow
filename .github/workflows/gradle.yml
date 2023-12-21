@@ -39,9 +39,6 @@ jobs:
 
     - name: check varible 2
       run: echo $payload
-
-    - name: check varible 3
-      run: echo ${{payload}}
     
     - name: Set deployment to in_progress
       uses: rsotnychenko/deployment-status-update@0.2.1
