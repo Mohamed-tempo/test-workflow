@@ -32,13 +32,16 @@ jobs:
           jq -r "$1" "${GITHUB_EVENT_PATH}"
         }
         echo "what next;_"
-        echo "payload=$(get_from_event '.deployment.payload')" >> $GITHUB_OUTPUT
+        echo EOF 
+          payload=$(get_from_event '.deployment.payload')" 
+          EOF >> $GITHUB_OUTPUT
 
     - name: set output
       run: echo "name=payload::$(get_from_event '.deployment.payload')" >> $GITHUB_OUTPUT
     
     - name: Set deployment to in_progress
       uses: rsotnychenko/deployment-status-update@0.2.1
+      if: always()
       with:
         description: "Deploy in progress"
         status: in_progress
